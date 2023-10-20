@@ -1,0 +1,29 @@
+
+.main-container {
+    
+}
+
+select {
+    background-color: var(--background-color);
+    border: 1vw solid var(--background-color);
+    border-radius: 10px;
+    color: var(--accent-color);
+}
+
+select:hover {
+    color: var(--text-color);
+}
+
+#slogan {
+    font: roboto;
+    font-size: 5vw;
+    color: var(--accent-color);
+    position: relative;
+    justify-content: center;
+    z-index: -1;
+    text-align: center;
+}
+
+#index {
+    
+}
