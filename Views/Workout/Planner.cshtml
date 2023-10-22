@@ -1,8 +1,55 @@
 <div class="main-container" id="Planner">
-    <select aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
+    <div id="workout-carousel" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <h1>Kondition</h1>
+                <button class="carousel-button" id="conditioning-button"> Kondition</button>
+            </div>
+            <div class="carousel-item">
+                <h1>Styrka</h1>
+                <button class="carousel-button" id="strength-button"> Styrka</button>
+            </div>
+            <div class="carousel-item">
+                <h1>Intervaller</h1>
+                <button class="carousel-button" id="intervals-button"> Intervaller</button>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#workout-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#workout-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div id="strength-builder">
+        <select aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">Kondition</option>
+            <option value="2">Styrka</option>
+            <option value="3">Intervaller</option>
+        </select>
+    </div>
+
+        <div id="conditioning-builder">
+        <select aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">spring för fan</option>
+            <option value="2">swim</option>
+            <option value="3">Intervaller</option>
+        </select>
+    </div>
+
+        <div id="intervals-builder">
+        <select aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">spring stanna spring</option>
+            <option value="2">trappa</option>
+            <option value="3">Intervaller</option>
+        </select>
+    </div>
 </div>
+
+<script src="~/js/planner.js"></script>
