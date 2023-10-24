@@ -1,6 +1,5 @@
 const conditioningButton = document.getElementById("conditioning-button");
 const strengthButton = document.getElementById("strength-button");
-const intervalsButton = document.getElementById("intervals-button");
 
 const workoutCarousel = document.getElementById("workout-carousel");
 
@@ -17,7 +16,21 @@ function workoutOnClick(id) {
     }
 }
 
+function checkbox(boxId, lableId) {
+    const checkbox = document.getElementById(boxId);
+    const labelText = document.getElementById(lableId);
+    const exerciseBuilder = document.getElementById("exercise-builder");
+
+    if (checkbox.checked) {
+        labelText.textContent = "Remove Exercise";
+        exerciseBuilder.style.display = "contents";
+    } else {
+        labelText.textContent = "Add Exercise";
+        exerciseBuilder.style.display = "none";
+    }
+};
+
 
 document.getElementById("strength-button").addEventListener("click", () => workoutOnClick("strength-builder"));
 document.getElementById("conditioning-button").addEventListener("click", () => workoutOnClick("conditioning-builder"));
-document.getElementById("intervals-button").addEventListener("click", () => workoutOnClick("intervals-builder"));
+document.getElementById("btn-check-outlined").addEventListener("change", () => checkbox("btn-check-outlined", "label-text"));

@@ -28,6 +28,10 @@ select:hover {
     z-index: -1;
 }
 
+.form-switch{
+    color: var(--accent-color);
+}
+
 .main-container {
     
 }
@@ -60,7 +64,7 @@ select:hover {
 }
 
 /* Builders */
-#intervals-builder {
+#exercise-builder {
     display: none;
 }
 

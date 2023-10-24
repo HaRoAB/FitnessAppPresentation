@@ -2,16 +2,12 @@
     <div id="workout-carousel" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <h1>Kondition</h1>
-                <button class="carousel-button" id="conditioning-button"> Kondition</button>
+                <h1>Cardio</h1>
+                <button class="carousel-button" id="conditioning-button"> Cardio</button>
             </div>
             <div class="carousel-item">
-                <h1>Styrka</h1>
-                <button class="carousel-button" id="strength-button"> Styrka</button>
-            </div>
-            <div class="carousel-item">
-                <h1>Intervaller</h1>
-                <button class="carousel-button" id="intervals-button"> Intervaller</button>
+                <h1>Strength</h1>
+                <button class="carousel-button" id="strength-button"> Strength</button>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#workout-carousel" data-bs-slide="prev">
@@ -25,28 +21,40 @@
     </div>
 
     <div id="strength-builder">
-        <select aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">Kondition</option>
-            <option value="2">Styrka</option>
-            <option value="3">Intervaller</option>
-        </select>
+        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn-check-outlined">
+            <span id="label-text">Add Exercise</span>
+        </label>
+        <div id="exercise-builder">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Name</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Weight</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Reps</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Sets</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Rest</label>
+            </div>
+            <button type="button" class="btn" id="start-workout-button">Start workout</button>
+        </div>
     </div>
 
-        <div id="conditioning-builder">
+    <div id="conditioning-builder">
         <select aria-label="Default select example">
-            <option selected>Open this select menu</option>
+            <option selected>Open this select menu</option>7
             <option value="1">spring för fan</option>
             <option value="2">swim</option>
-            <option value="3">Intervaller</option>
-        </select>
-    </div>
-
-        <div id="intervals-builder">
-        <select aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">spring stanna spring</option>
-            <option value="2">trappa</option>
             <option value="3">Intervaller</option>
         </select>
     </div>
