@@ -30,7 +30,26 @@ function checkbox(boxId, lableId) {
     }
 };
 
+function showHide(id) {
+    const object = document.getElementById(id);
+    const objectStyle = window.getComputedStyle(object);
+    console.log("show/hide object:", objectStyle.display);
+    if (objectStyle.display === "none") {
+        console.log("this is if");
+        object.style.display = "block";
+    }
+    else {
+        console.log("this is else");
+        object.style.display = "none";
+    }
+}
+
 
 document.getElementById("strength-button").addEventListener("click", () => workoutOnClick("strength-builder"));
 document.getElementById("conditioning-button").addEventListener("click", () => workoutOnClick("conditioning-builder"));
 document.getElementById("btn-check-outlined").addEventListener("change", () => checkbox("btn-check-outlined", "label-text"));
+document.getElementById("name-switch").addEventListener("change", () => showHide("name"));
+document.getElementById("weight-switch").addEventListener("change", () => showHide("weight"));
+document.getElementById("sets-switch").addEventListener("change", () => showHide("sets"));
+document.getElementById("reps-switch").addEventListener("change", () => showHide("reps"));
+document.getElementById("rest-switch").addEventListener("change", () => showHide("rest"));

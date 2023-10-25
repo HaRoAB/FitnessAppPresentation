@@ -1,5 +1,3 @@
-
-
 /* Elements */
 
 select {
@@ -17,26 +15,27 @@ select:hover {
 
 .carousel-button {
     align-self: center;
-    background: none;
+    background-color: var(--accent-color);
     width: 10vw;
-    color: var(--accent-color);
+    color: var(--text-color);
     margin: 2vw;
     box-shadow: none;
+    border: 1vw solid var(--background-color);
 }
 
 .carousel-slide {
     z-index: -1;
 }
 
-.form-switch{
+.form-switch {
     color: var(--accent-color);
 }
 
-.main-container {
-    
-}
-
 /* Id */
+
+#reps, #sets, #rest, #name, #weight {
+    display: none;
+}
 
 #carousel-item {
     height: 100vh;
@@ -44,9 +43,7 @@ select:hover {
     text-align: center;
 }
 
-#index {
-    
-}
+#index {}
 
 #slogan {
     font: roboto;
@@ -60,7 +57,7 @@ select:hover {
 
 #workout-carousel {
     position: relative;
-    text-align: center;    
+    text-align: center;
 }
 
 /* Builders */
@@ -77,22 +74,8 @@ select:hover {
 }
 
 /* Buttons */
-#conditioning-button {
+#conditioning-button {}
 
-}
+#strength-button {}
 
-#strength-button {
-
-}
-
-#intervals-button {
-
-}
-
-
-
-
-
-
-
-
+#intervals-button {}
