@@ -1,3 +1,5 @@
+@model WorkoutPlanner.Models.WorkoutViewModel
+
 <div class="main-container" id="Planner">
     <div id="workout-carousel" class="carousel slide">
         <div class="carousel-inner">
@@ -20,7 +22,7 @@
         </button>
     </div>
 
-    <div id="strength-builder">
+    <form asp-action="Planner" id="strength-builder">
         <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
         <label class="btn btn-outline-primary" for="btn-check-outlined">
             <span id="label-text">Add Exercise</span>
@@ -73,7 +75,7 @@
             </div>
             <button type="button" class="btn" id="start-workout-button">Start workout</button>
         </div>
-    </div>
+    </form>
 
     <div id="conditioning-builder">
         <select aria-label="Default select example">

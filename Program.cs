@@ -1,7 +1,13 @@
+using FitnessAppPresentation.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// add api services
+builder.Services.AddHttpClient<WorkoutApiService>();
+builder.Services.AddScoped<IService,WorkoutApiService>();
 
 var app = builder.Build();
 
