@@ -2,7 +2,7 @@ using FitnessAppPresentation.Models;
 
 namespace FitnessAppPresentation.Services;
 
-public interface IWorkoutService
+public interface IService
 {
     Task Create(WorkoutViewModel obj);
     Task Get(string id);

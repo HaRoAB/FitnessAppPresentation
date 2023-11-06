@@ -4,7 +4,7 @@ using FitnessAppPresentation.Models;
 
 namespace FitnessAppPresentation.Services;
 
-public class WorkoutApiService : IWorkoutService
+public class WorkoutApiService : IService
 {
 
     private readonly string url = "https://localhost:5191/api/workout";

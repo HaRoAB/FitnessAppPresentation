@@ -7,9 +7,15 @@ builder.Services.AddControllersWithViews();
 
 // add api services
 builder.Services.AddHttpClient<WorkoutApiService>();
-builder.Services.AddScoped<IService,WorkoutApiService>();
+builder.Services.AddScoped<IService, WorkoutApiService>();
 
 var app = builder.Build();
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "";
+if (!string.IsNullOrEmpty(port))
+{
+    app.Urls.Add($"http://*:{port}");
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
