@@ -7,7 +7,7 @@ namespace FitnessAppPresentation.Services;
 public class WorkoutApiService : IService
 {
 
-    private readonly string url = "https://localhost:5191/api/workout";
+    private readonly string url = "http://localhost:5191/workout";
     private readonly HttpClient _httpClient;
 
     public WorkoutApiService(HttpClient httpClient)
@@ -20,24 +20,42 @@ public class WorkoutApiService : IService
         throw new NotImplementedException();
     }
 
-    public async Task Get()
+    public async Task<List<WorkoutDTO>> Get()
     {
-        var response = await _httpClient.GetAsync(url);
-        response.EnsureSuccessStatusCode();
-        Console.WriteLine(response.Content.ToString());
-        if (response.IsSuccessStatusCode)
+        try
         {
-            Console.WriteLine("Success");
-            return;
+            var response = await _httpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var workoutList = JsonSerializer.Deserialize<List<WorkoutDTO>>(json);
+
+                if (workoutList != null)
+                {
+                    foreach (var workout in workoutList)
+                    {
+                        Console.WriteLine(workout);
+                    }
+                    return workoutList;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Received an error response from the API.");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine("Failure");
-            return;
+            Console.WriteLine($"Error: {ex.Message}");
+            // Handle the exception accordingly
         }
+
+        return new List<WorkoutDTO>(); // Return an empty list or handle the failure case accordingly
     }
 
-    public async Task Get(string id)
+
+    public async Task<WorkoutDTO> Get(string id)
     {
         throw new NotImplementedException();
     }

@@ -1,0 +1,89 @@
+
+<div class="main-container" id="Planner">
+    <div id="workout-carousel" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <h1>Cardio</h1>
+                <button class="btn" id="conditioning-button"> Cardio</button>
+            </div>
+            <div class="carousel-item">
+                <h1>Strength</h1>
+                <button class="btn" id="strength-button"> Strength</button>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#workout-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#workout-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <form asp-action="Planner" id="strength-builder">
+        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn-check-outlined">
+            <span id="label-text">Add Exercise</span>
+        </label>
+        <div id="exercise-builder">
+            <div class="input-group mb-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="name-switch">
+                    <label class="form-check-label" for="name-switch">Name</label>
+                    <input type="text" id="name" class="form-control">
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="weight-switch">
+                    <label class="form-check-label" for="weight-switch">Weight</label>
+                    <input type="text" id="weight" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="reps-switch">
+                <label class="form-check-label" for="reps-switch">Reps</label>
+                    <select aria-label="Default select example" id="reps">
+                        <option selected>Nr of reps</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="sets-switch">
+                <label class="form-check-label" for="sets-switch">Sets</label>
+                      <select aria-label="Default select example" id="sets">
+                        <option selected>Nr of sets</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="rest-switch">
+                <label class="form-check-label" for="rest-switch">Rest</label>
+                      <select aria-label="Default select example" id="rest">
+                        <option selected>Minutes of rest</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+            </div>
+            <button type="button" class="btn" id="start-workout-button">Start workout</button>
+        </div>
+    </form>
+
+    <div id="conditioning-builder">
+        <select aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">spring för fan</option>
+            <option value="2">swim</option>
+            <option value="3">Intervaller</option>
+        </select>
+    </div>
+</div>
+
+<script src="~/js/planner.js"></script>

@@ -5,8 +5,8 @@ namespace FitnessAppPresentation.Services;
 public interface IService
 {
     Task Create(WorkoutViewModel obj);
-    Task Get(string id);
-    Task Get();
+    Task<WorkoutDTO> Get(string id);
+    Task<List<WorkoutDTO>> Get();
     Task Update(WorkoutViewModel obj);
     Task Delete(string id);
 

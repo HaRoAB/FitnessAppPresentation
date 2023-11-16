@@ -4,7 +4,7 @@ public class WorkoutViewModel
 {
     public string Id { get; set; }
     public string Name { get; set; }
-    public List <string> Exercises { get; set; }
+    public List <WorkoutDTO> Workouts { get; set; }
 
 
     // public string Id { get; set; }

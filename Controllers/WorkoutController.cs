@@ -15,10 +15,15 @@ public class WorkoutController : Controller
         _workoutApiService = workoutApiService;
     }
 
-    public IActionResult Planner()
+    public async Task<IActionResult> Planner()
     {
-        return View();
+        WorkoutViewModel workoutViewModel = new()
+        {
+            Workouts = await _workoutApiService.Get()
+        };
+        return View(workoutViewModel);
     }
+
 
     [HttpPost]
     public IActionResult Planner(WorkoutViewModel workoutViewModel)
