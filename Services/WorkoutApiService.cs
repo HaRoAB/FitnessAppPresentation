@@ -7,7 +7,7 @@ namespace FitnessAppPresentation.Services;
 public class WorkoutApiService : IService
 {
 
-    private readonly string url = "http://localhost:5191/workout";
+    private readonly string url = Environment.GetEnvironmentVariable("WORKOUT_API_URL");
     private readonly HttpClient _httpClient;
 
     public WorkoutApiService(HttpClient httpClient)
@@ -24,7 +24,7 @@ public class WorkoutApiService : IService
     {
         try
         {
-            var response = await _httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync($"{url}/workout");
 
             if (response.IsSuccessStatusCode)
             {
