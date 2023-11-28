@@ -16,7 +16,6 @@
                     <th>@Html.DisplayNameFor(Model => Model.Workouts[0].Exercises[0].Sets)</th>
                     <th>@Html.DisplayNameFor(Model => Model.Workouts[0].Exercises[0].Weight)</th>
                     <th>@Html.DisplayNameFor(Model => Model.Workouts[0].Exercises[0].Rest)</th>
-
                 </tr>
             </thead>
             @foreach (ExerciseDTO exercise in workout.Exercises)
@@ -31,5 +30,55 @@
             }
         </table>
     }
-</div>
+@model WorkoutViewModel
+
+@{
+    ViewBag.Title = "Workout";
+}
+
+<header></header>
+<div>
+    <!-- Form for workout details -->
+<form id="workoutDetailsForm">
+    <div class="mb-3">
+        <label for="WorkoutName" class="form-label">Workout Name</label>
+        <input type="text" class="form-control" id="WorkoutName" aria-describedby="workoutNameHelp">
+        <div id="workoutNameHelp" class="form-text">Enter the name of your workout.</div>
+    </div>
+
+    <!-- Replace "Number of Exercises" input with "Add New Exercise" button -->
+    <div class="mb-3">
+        <button type="button" class="btn btn-success" id="addExerciseButton">Add New Exercise</button>
+    </div>
+
+</form>
+
+
+    <!-- Form for individual exercises 
+    i want the excercise to be "add new exc." button
+    -->
+    <form>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Exercise</label>
+            <input type="text" class="form-control" id="Name" aria-describedby="nameHelp">
+            <div id="nameHelp" class="form-text">The type of exercise you want to do.</div>
+        </div>
+        <div class="mb-3">
+            <label for="Reps" class="form-label">Reps</label>
+            <input type="number" class="form-control" id="Reps">
+        </div>
+        <div class="mb-3">
+            <label for="Sets" class="form-label">Sets</label>
+            <input type="number" class="form-control" id="Sets">
+        </div>
+        <div class="mb-3">
+            <label for="Weight" class="form-label">Weight</label>
+            <input type="number" class="form-control" id="Weight">
+        </div>
+        <div class="mb-3">
+            <label for="Rest" class="form-label">Rest</label>
+            <input type="text" class="form-control" id="Weight">
+        </div>
+    <button type="submit" class="btn btn-primary">Submit Workout Details</button>
+
 <footer></footer>
