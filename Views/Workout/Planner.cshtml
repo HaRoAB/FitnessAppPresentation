@@ -30,55 +30,38 @@
             }
         </table>
     }
-@model WorkoutViewModel
-
-@{
-    ViewBag.Title = "Workout";
-}
-
-<header></header>
 <div>
-    <!-- Form for workout details -->
-<form id="workoutDetailsForm">
-    <div class="mb-3">
-        <label for="WorkoutName" class="form-label">Workout Name</label>
-        <input type="text" class="form-control" id="WorkoutName" aria-describedby="workoutNameHelp">
-        <div id="workoutNameHelp" class="form-text">Enter the name of your workout.</div>
+
+@using (Html.BeginForm("Planner", "Workout", FormMethod.Post))
+{
+    <div class="form-group custom-form">
+       <table>
+            <thead>
+                @Html.LabelFor(model => model.Workout.Name)
+            </thead>
+            <tbody>
+                <td>@Html.EditorFor(model => model.Workout.Name)</td>
+                <td><button type="button" onclick="addExercise()">Add Exercise</button></td>
+                <table id="exercise-form">
+                    <thead>
+                        <th>@Html.LabelFor(model => model.Exercise.Name)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Reps)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Sets)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Weight)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Rest)</th>
+                    </thead>
+                    <tbody>
+                        <td>@Html.EditorFor(model => model.Exercise.Name)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Reps)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Sets)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Weight)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Rest)</td>
+                    </tbody>
+                </table>
+            </tbody>
+        </table>
     </div>
-
-    <!-- Replace "Number of Exercises" input with "Add New Exercise" button -->
-    <div class="mb-3">
-        <button type="button" class="btn btn-success" id="addExerciseButton">Add New Exercise</button>
-    </div>
-
-</form>
-
-
-    <!-- Form for individual exercises 
-    i want the excercise to be "add new exc." button
-    -->
-    <form>
-        <div class="mb-3">
-            <label for="Name" class="form-label">Exercise</label>
-            <input type="text" class="form-control" id="Name" aria-describedby="nameHelp">
-            <div id="nameHelp" class="form-text">The type of exercise you want to do.</div>
-        </div>
-        <div class="mb-3">
-            <label for="Reps" class="form-label">Reps</label>
-            <input type="number" class="form-control" id="Reps">
-        </div>
-        <div class="mb-3">
-            <label for="Sets" class="form-label">Sets</label>
-            <input type="number" class="form-control" id="Sets">
-        </div>
-        <div class="mb-3">
-            <label for="Weight" class="form-label">Weight</label>
-            <input type="number" class="form-control" id="Weight">
-        </div>
-        <div class="mb-3">
-            <label for="Rest" class="form-label">Rest</label>
-            <input type="text" class="form-control" id="Weight">
-        </div>
-    <button type="submit" class="btn btn-primary">Submit Workout Details</button>
+    <input type="submit" value="Submit" />
+}
 
 <footer></footer>

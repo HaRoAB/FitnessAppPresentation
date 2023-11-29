@@ -13,4 +13,7 @@ public class WorkoutViewModel
     // public int Reps { get; set; }
     // public float Weight { get; set; }
     // public Timer Rest { get; set; }
+
+    public ExerciseDTO Exercise = new ExerciseDTO();
+    public WorkoutDTO Workout = new WorkoutDTO();
 }
