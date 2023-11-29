@@ -24,7 +24,6 @@ public class WorkoutController : Controller
         return View(workoutViewModel);
     }
 
-
     [HttpPost]
     public IActionResult Planner(WorkoutViewModel workoutViewModel)
     {

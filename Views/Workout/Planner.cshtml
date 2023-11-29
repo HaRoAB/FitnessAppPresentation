@@ -4,7 +4,6 @@
     ViewBag.Title = "Workout";
 }
 
-<header></header>
 <div>
     @foreach (var workout in Model.Workouts)
     {
@@ -31,6 +30,7 @@
             }
         </table>
     }
+<<<<<<< HEAD
 
 
 <header></header>
@@ -53,4 +53,40 @@
 
 
 
+=======
+<div>
+
+@using (Html.BeginForm("Planner", "Workout", FormMethod.Post))
+{
+    <div class="form-group custom-form">
+       <table>
+            <thead>
+                @Html.LabelFor(model => model.Workout.Name)
+            </thead>
+            <tbody>
+                <td>@Html.EditorFor(model => model.Workout.Name)</td>
+                <td><button type="button" onclick="addExercise()">Add Exercise</button></td>
+                <table id="exercise-form">
+                    <thead>
+                        <th>@Html.LabelFor(model => model.Exercise.Name)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Reps)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Sets)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Weight)</th>
+                        <th>@Html.LabelFor(model => model.Exercise.Rest)</th>
+                    </thead>
+                    <tbody>
+                        <td>@Html.EditorFor(model => model.Exercise.Name)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Reps)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Sets)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Weight)</td>
+                        <td>@Html.EditorFor(model => model.Exercise.Rest)</td>
+                    </tbody>
+                </table>
+            </tbody>
+        </table>
+    </div>
+    <input type="submit" value="Submit" />
+}
+
+>>>>>>> 707eab213f6bb565d59ceed14633c310797456c4
 <footer></footer>

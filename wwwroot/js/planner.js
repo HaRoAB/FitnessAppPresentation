@@ -3,6 +3,12 @@ const strengthButton = document.getElementById("strength-button");
 
 const workoutCarousel = document.getElementById("workout-carousel");
 
+const exerciseForm = document.getElementById("exercise-form");
+
+function addExercise() {
+    
+}
+
 let id = "";
 
 // Add a click event handler to the button
