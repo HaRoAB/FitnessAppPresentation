@@ -1,15 +1,11 @@
-
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
-
 name: Build and deploy to Azure Kubernetes Service
 
 env:
-  AZURE_CONTAINER_REGISTRY: ""
-  PROJECT_NAME: MY_PROJECT_NAME              # set this to your project's name
-  RESOURCE_GROUP: ""
-  CLUSTER_NAME: ""
+  AZURE_CONTAINER_REGISTRY: MY_REGISTRY_NAME
+  PROJECT_NAME: MY_PROJECT_NAME
+  RESOURCE_GROUP: MY_RESOURCE_GROUP
+  CLUSTER_NAME: MY_CLUSTER_NAME
+  REGISTRY_URL: MY_REGISTRY_URL
 
 on: [push]
 

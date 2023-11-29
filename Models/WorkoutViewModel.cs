@@ -5,8 +5,6 @@ public class WorkoutViewModel
     public string Id { get; set; }
     public string Name { get; set; }
     public List <WorkoutDTO> Workouts { get; set; }
-<<<<<<< HEAD
-=======
 
 
     // public string Id { get; set; }
@@ -18,5 +16,4 @@ public class WorkoutViewModel
 
     public ExerciseDTO Exercise = new ExerciseDTO();
     public WorkoutDTO Workout = new WorkoutDTO();
->>>>>>> 707eab213f6bb565d59ceed14633c310797456c4
 }
