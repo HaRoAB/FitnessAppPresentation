@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: Build to ACR
+=======
+name: Build and deploy to Azure Kubernetes Service
+>>>>>>> b8ecb042e6a9f2919cc2e13a05b6c1f69dc78392
 
 env:
   AZURE_CONTAINER_REGISTRY: MY_REGISTRY_NAME
