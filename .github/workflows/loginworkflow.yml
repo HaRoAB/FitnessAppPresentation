@@ -27,11 +27,9 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
         clientId: ${{ secrets.AZURE_CLIENT_ID }}
         clientSecret: ${{ secrets.AZURE_CLIENT_SECRET }}
         tenantId: ${{ secrets.AZURE_TENANT_ID }}
-
 
     - name: Check Azure Login Status
       run: |
