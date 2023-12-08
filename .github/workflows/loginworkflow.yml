@@ -47,4 +47,4 @@ jobs:
         
     - name: Trigger Rolling Restart
       run: |
-        kubectl rollout restart deployment/${{ env.K8S_DEPLOYMENT_NAME }}
+        kubectl rollout restart deployment/${{ env.K8S_DEPLOYMENT_NAME }} -n fitnessappnamespace
