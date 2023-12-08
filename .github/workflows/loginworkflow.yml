@@ -1,19 +1,10 @@
-# name: Build and deploy to Azure Kubernetes Service
-
-# env:
-#   AZURE_CONTAINER_REGISTRY: MY_REGISTRY_NAME
-#   PROJECT_NAME: MY_PROJECT_NAME
-#   RESOURCE_GROUP: MY_RESOURCE_GROUP
-#   CLUSTER_NAME: MY_CLUSTER_NAME
-#   REGISTRY_URL: MY_REGISTRY_URL
-
-#   CHART_REPO: https://github.com/HaRoAB/Infrastructure/tree/main/K8S-helm/fitnessApp  # Replace with the URL of your chart repository
-#   CHART_PATH: Infrastructure/K8S-helm/fitnessapp
-#   CHART_OVERRIDE_PATH: Infrastructure/K8S-helm/fitnessapp/templates
 name: Run Azure Login with OIDC
 
 env:
-
+  AZURE_CLIENT_ID: "98886e08-bb0c-4261-a4d7-3db62255587b"
+  AZURE_CLIENT_SECRET: "ee350865-19c0-43a0-bc15-8ea1a203dbb0"
+  AZURE_TENANT_ID: "f99f0ccd-c0aa-4d82-a8d9-8c5d3e4914b7"
+  AZURE_CREDENTIALS: "b071cadb-6c61-4bb8-a70d-9ea95ab1ae42"
   REGISTRY_NAME: "properwhaleacr"
   REGISTRY_URL: "properwhaleacr.azurecr.io"
   RESOURCE_GROUP: "properwhale-rg"
@@ -45,40 +36,3 @@ jobs:
     - name: Check Azure Login Status
       run: |
         az account show
-
-
-    # - name: Build image on ACR
-    #   uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
-    #   with:
-    #     azcliversion: 2.29.1
-    #     inlineScript: |
-    #       az configure --defaults acr=${{ env.AZURE_CONTAINER_REGISTRY }}
-    #       az acr build -r ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
-    
-    # - name: Gets K8s context
-    #   uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
-    #   with:
-    #       creds: ${{ secrets.AZURE_CREDENTIALS }}
-    #       resource-group: ${{ env.RESOURCE_GROUP }}
-    #       cluster-name: ${{ env.CLUSTER_NAME }}
-    #   id: login
-
-    # - name: Configure deployment
-    #   uses: azure/k8s-bake@61041e8c2f75c1f01186c8f05fb8b24e1fc507d8
-    #   with:
-    #     renderEngine: 'helm'
-    #     helmChart: ${{ env.CHART_PATH }}
-    #     overrideFiles: ${{ env.CHART_OVERRIDE_PATH }}
-    #     overrides: |     
-    #       replicas:2
-    #     helm-version: 'latest' 
-    #   id: bake
-
-    # - name: Deploys application
-    #   uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
-    #   with:
-    #     manifests: ${{ steps.bake.outputs.manifestsBundle }}
-    #     images: |
-    #       ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.PROJECT_NAME }}:${{ github.sha }}
-    #     imagepullsecrets: |
-    #       ${{ env.PROJECT_NAME }}
