@@ -5,6 +5,7 @@ env:
   AZURE_CLIENT_SECRET: "ee350865-19c0-43a0-bc15-8ea1a203dbb0"
   AZURE_TENANT_ID: "f99f0ccd-c0aa-4d82-a8d9-8c5d3e4914b7"
   AZURE_CREDENTIALS: "b071cadb-6c61-4bb8-a70d-9ea95ab1ae42"
+  AZURE_SUBSCRIPTION_ID: "441d0133-3bbe-44b6-98fc-cec0e4cfef19"
   REGISTRY_NAME: "properwhaleacr"
   REGISTRY_URL: "properwhaleacr.azurecr.io"
   RESOURCE_GROUP: "properwhale-rg"
@@ -27,9 +28,12 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: "441d0133-3bbe-44b6-98fc-cec0e4cfef19"
+
 
     - name: Check Azure Login Status
       run: |
