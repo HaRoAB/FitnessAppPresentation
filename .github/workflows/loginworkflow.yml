@@ -39,5 +39,6 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
+        docker login properwhaleacr.azurecr.io -u properwhaleacr -p ZCi3WKuT7ZSRiUW3ikixVeKUnrAKzDNpRFLPg+AQoU+ACRBdNtyL
         docker build -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }} .
         docker push ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }}
