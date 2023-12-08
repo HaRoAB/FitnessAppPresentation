@@ -4,8 +4,9 @@ env:
   REGISTRY_NAME: "properwhaleacr"
   REGISTRY_URL: "properwhaleacr.azurecr.io"
   RESOURCE_GROUP: "properwhale-rg"
+  CLUSTER_NAME: "properwhale-aks"
+  PROJECT_NAME: "fitnessapp"
   TAG: "latest"
-  IMAGE_NAME: "fitnessapp"
 
 on: [push]
 
@@ -28,3 +29,20 @@ jobs:
     - name: Check Azure Login Status
       run: |
         az account show
+
+    - name: Gets K8s context
+      uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{ env.RESOURCE_GROUP }}
+          cluster-name: ${{ env.CLUSTER_NAME }}
+      id: login
+
+    - name: Build image on ACR
+      uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
+      with:
+        azcliversion: 2.29.1
+        inlineScript: |
+          az configure --defaults acr=${{ env.REGISTRY_NAME }}
+          az acr build -r ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+    
