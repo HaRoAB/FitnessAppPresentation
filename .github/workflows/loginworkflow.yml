@@ -7,8 +7,6 @@ env:
   CLUSTER_NAME: "properwhale-aks"
   PROJECT_NAME: "fitnessapp"
   TAG: "latest"
-  CHART_PATH: ""
-  CHART_OVERRIDE_PATH: ""
 
 on: [push]
 
@@ -41,5 +39,5 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} .
-        docker push ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+        docker build -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }} .
+        docker push ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }}
