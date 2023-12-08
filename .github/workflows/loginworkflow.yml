@@ -23,11 +23,7 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: "b071cadb-6c61-4bb8-a70d-9ea95ab1ae42"
-        client-id: "98886e08-bb0c-4261-a4d7-3db62255587b"
-        client-secret: "ee350865-19c0-43a0-bc15-8ea1a203dbb0"
-        tenant-id: "f99f0ccd-c0aa-4d82-a8d9-8c5d3e4914b7"
-        subscription-id: "441d0133-3bbe-44b6-98fc-cec0e4cfef19"
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
 
     - name: Check Azure Login Status
