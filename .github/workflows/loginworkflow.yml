@@ -6,9 +6,9 @@ env:
   RESOURCE_GROUP: "regularearwig-rg"
   CLUSTER_NAME: "regularearwig-aks"
   PROJECT_NAME: "fitnessapp"
+  PASSWORD: "8s15gPZ5F6OJkyVtELaANG9nktIUb3iRuM+jAcMGUY+ACRDmGH3h"
   TAG: "latest"
   K8S_DEPLOYMENT_NAME: "fitnessapp-deployment"
-
 on: [push]
 
 jobs:
