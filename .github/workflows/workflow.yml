@@ -7,8 +7,15 @@ on:
 jobs:
   build-and-push:
     runs-on: self-hosted
-
     steps:
+      - name: Set up Docker
+        uses: docker/setup-docker@v2
+        with:
+          docker-config: |
+            {
+              "experimental": "enabled"
+            }
+
       - name: Checkout code
         uses: actions/checkout@v2
 
