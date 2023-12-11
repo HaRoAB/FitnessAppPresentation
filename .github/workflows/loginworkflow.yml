@@ -1,16 +1,14 @@
-name: Build and deploy to Azure Kubernetes Service
+name: Run Azure Login with OIDC
 
 env:
-  AZURE_CONTAINER_REGISTRY: MY_REGISTRY_NAME
-  PROJECT_NAME: MY_PROJECT_NAME
-  RESOURCE_GROUP: MY_RESOURCE_GROUP
-  CLUSTER_NAME: MY_CLUSTER_NAME
-  REGISTRY_URL: MY_REGISTRY_URL
-
-  CHART_REPO: https://github.com/HaRoAB/Infrastructure/tree/main/K8S-helm/fitnessApp  # Replace with the URL of your chart repository
-  CHART_PATH: Infrastructure/K8S-helm/fitnessapp
-  CHART_OVERRIDE_PATH: Infrastructure/K8S-helm/fitnessapp/templates
-
+  REGISTRY_NAME: "regularearwigacr"
+  REGISTRY_URL: "regularearwigacr.azurecr.io"
+  RESOURCE_GROUP: "regularearwig-rg"
+  CLUSTER_NAME: "regularearwig-aks"
+  PROJECT_NAME: "fitnessapp"
+  PASSWORD: "8s15gPZ5F6OJkyVtELaANG9nktIUb3iRuM+jAcMGUY+ACRDmGH3h"
+  TAG: "latest"
+  K8S_DEPLOYMENT_NAME: "fitnessapp-deployment"
 on: [push]
 
 jobs:
@@ -18,46 +16,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Install Azure CLI
+
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y azure-cli
 
     - name: Azure Login
-      uses: azure/login@14a755a4e2fd6dff25794233def4f2cf3f866955
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      # creds: ${{ secrets.AZURE_CLIENT_ID }} ${{ secrets.AZURE_CLIENT_SECRET }} ${{ secrets.AZURE_TENANT_ID }}
 
+    - name: Check Azure Login Status
+      run: |
+        az account show
 
-    - name: Build image on ACR
-      uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
-      with:
-        azcliversion: 2.29.1
-        inlineScript: |
-          az configure --defaults acr=${{ env.AZURE_CONTAINER_REGISTRY }}
-          az acr build -r ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
-    
     - name: Gets K8s context
-      uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
+      uses: azure/aks-set-context@v1
       with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${{ env.RESOURCE_GROUP }}
-          cluster-name: ${{ env.CLUSTER_NAME }}
-      id: login
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        resource-group: ${{ env.RESOURCE_GROUP }}
+        cluster-name: ${{ env.CLUSTER_NAME }}
 
-    - name: Configure deployment
-      uses: azure/k8s-bake@61041e8c2f75c1f01186c8f05fb8b24e1fc507d8
-      with:
-        renderEngine: 'helm'
-        helmChart: ${{ env.CHART_PATH }}
-        overrideFiles: ${{ env.CHART_OVERRIDE_PATH }}
-        overrides: |     
-          replicas:2
-        helm-version: 'latest' 
-      id: bake
+    - name: Build and Push Docker Image
+      run: |
+        docker login regularearwigacr.azurecr.io -u regularearwigacr -p 8s15gPZ5F6OJkyVtELaANG9nktIUb3iRuM+jAcMGUY+ACRDmGH3h
 
-    - name: Deploys application
-      uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
-      with:
-        manifests: ${{ steps.bake.outputs.manifestsBundle }}
-        images: |
-          ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.PROJECT_NAME }}:${{ github.sha }}
-        imagepullsecrets: |
-          ${{ env.PROJECT_NAME }}
+        docker build -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }} .
+        docker push ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }}
+
+
+    - name: Trigger Rolling Restart
+      run: |
+        kubectl rollout restart deployment/${{ env.K8S_DEPLOYMENT_NAME }} -n fitnessappnamespace
