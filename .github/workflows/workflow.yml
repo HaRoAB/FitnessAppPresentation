@@ -1,33 +1,18 @@
-<<<<<<< HEAD
-name: Build to ACR
-=======
-name: Build and deploy to Azure Kubernetes Service
->>>>>>> b8ecb042e6a9f2919cc2e13a05b6c1f69dc78392
-
-env:
-  AZURE_CONTAINER_REGISTRY: MY_REGISTRY_NAME
-  PROJECT_NAME: MY_PROJECT_NAME
-  RESOURCE_GROUP: MY_RESOURCE_GROUP
-  CLUSTER_NAME: MY_CLUSTER_NAME
-  REGISTRY_URL: MY_REGISTRY_URL
-
-on: [push]
+name: Build and Push to ACR
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-push:
+    runs-on: self-hosted
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Azure Login
-      uses: azure/login@14a755a4e2fd6dff25794233def4f2cf3f866955
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Build image on ACR
-      uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
-      with:
-        azcliversion: 2.29.1
-        inlineScript: |
-          az configure --defaults acr=${{ env.AZURE_CONTAINER_REGISTRY }}
-          az acr build -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
+      - name: Build and push Docker image
+        run: |
+          docker build -t $ACR_SERVER/fitnessapp:latest .
+          docker push $ACR_SERVER/fitnessapp:latest
