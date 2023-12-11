@@ -40,7 +40,7 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker login ${{ env.REGISTRY_URL }} -u ${{ env.REGISTRY_NAME }} -p ${{ env.PASSWORD }}
+        docker login regularearwigacr.azurecr.io -u regularearwigacr -p 8s15gPZ5F6OJkyVtELaANG9nktIUb3iRuM+jAcMGUY+ACRDmGH3h
 
         docker build -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }} .
         docker push ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }}
