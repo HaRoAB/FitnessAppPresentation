@@ -8,13 +8,6 @@ jobs:
   build-and-push:
     runs-on: self-hosted
     steps:
-
-      - name: install docker
-        run: |
-          curl -fsSL https://get.docker.com -o get-docker.sh
-          chmod +x get-docker.sh
-          sh get-docker.sh
-
       - name: Checkout code
         uses: actions/checkout@v4
 
