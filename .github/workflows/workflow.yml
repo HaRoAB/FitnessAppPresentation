@@ -12,17 +12,17 @@ jobs:
       -
         name: Export ACR_SERVER
         run: echo "ACR_SERVER=$ACR_SERVER" >> $GITHUB_ENV
-      - 
-        name: Azure login
-        uses: azure/login@v1
-        with:
-          auth-type: IDENTITY          
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          enable-AzPSSession: true
+      # - 
+      #   name: Azure login
+      #   uses: azure/login@v1
+      #   with:
+      #     auth-type: IDENTITY          
+      #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      #     enable-AzPSSession: true
       - 
         name: Login to ACR
-        run: az acr login $ACR_SERVER
+        run: az acr login $ACR_SERVER --identity
       - 
         name: Print ACR_SERVER
         run: echo $ACR_SERVER
