@@ -34,6 +34,8 @@
 
 @using (Html.BeginForm("Planner", "Workout", FormMethod.Post))
 {
+     @Html.AntiForgeryToken()
+     
     <div class="form-group custom-form">
        <table>
             <thead>

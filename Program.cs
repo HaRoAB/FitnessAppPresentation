@@ -1,4 +1,5 @@
 using FitnessAppPresentation.Services;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,10 @@ builder.Services.AddControllersWithViews();
 // add api services
 builder.Services.AddHttpClient<WorkoutApiService>();
 builder.Services.AddScoped<IService, WorkoutApiService>();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 
 var app = builder.Build();
 
