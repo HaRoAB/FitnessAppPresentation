@@ -1,10 +1,10 @@
 name: Run Azure Login with OIDC
 
 env:
-  REGISTRY_NAME: "properwhaleacr"
-  REGISTRY_URL: "properwhaleacr.azurecr.io"
-  RESOURCE_GROUP: "properwhale-rg"
-  CLUSTER_NAME: "properwhale-aks"
+  REGISTRY_NAME: "regularearwigacr"
+  REGISTRY_URL: "regularearwigacr.azurecr.io"
+  RESOURCE_GROUP: "regularearwig-rg"
+  CLUSTER_NAME: "regularearwig-aks"
   PROJECT_NAME: "fitnessapp"
   TAG: "latest"
   K8S_DEPLOYMENT_NAME: "fitnessapp-deployment"
@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
     - name: Install Azure CLI
+
       run: |
         sudo apt-get update
         sudo apt-get install -y azure-cli
@@ -40,11 +40,12 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker login properwhaleacr.azurecr.io -u properwhaleacr -p ZCi3WKuT7ZSRiUW3ikixVeKUnrAKzDNpRFLPg+AQoU+ACRBdNtyL
+        docker login ${{ env.REGISTRY_URL }} -u ${{ env.REGISTRY_NAME }} -p ${{ env.PASSWORD }}
+
         docker build -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }} .
         docker push ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }}
 
-        
+
     - name: Trigger Rolling Restart
       run: |
         kubectl rollout restart deployment/${{ env.K8S_DEPLOYMENT_NAME }} -n fitnessappnamespace
