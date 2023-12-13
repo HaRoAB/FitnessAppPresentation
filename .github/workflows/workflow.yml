@@ -10,6 +10,9 @@ jobs:
     runs-on: self-hosted
     steps:
       - 
+        name: Azure Login
+        run: az login --identity
+      - 
         name: Print ACR_SERVER
         run: echo $ACR_SERVER
       -
