@@ -11,7 +11,9 @@ jobs:
     steps:
       -
         name: Export ACR_SERVER
-        run: echo "ACR_SERVER=$ACR_SERVER" >> $GITHUB_ENV
+        run: |
+          echo "ACR_SERVER=$ACR_SERVER" >> $GITHUB_ENV
+          echo "ACR_SERVER=$ACR_NAME" >> $GITHUB_ENV
       # - 
       #   name: Azure login
       #   uses: azure/login@v1
@@ -22,7 +24,7 @@ jobs:
       #     enable-AzPSSession: true
       - 
         name: Login to ACR
-        run: az acr login $ACR_SERVER --identity
+        run: az acr login --name $ACR_NAME --identity
       - 
         name: Print ACR_SERVER
         run: echo $ACR_SERVER
