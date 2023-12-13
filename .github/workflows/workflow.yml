@@ -9,6 +9,9 @@ jobs:
   docker:
     runs-on: self-hosted
     steps:
+      - 
+        name: Print ACR_SERVER
+        run: echo $ACR_SERVER
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
