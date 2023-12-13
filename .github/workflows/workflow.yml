@@ -13,6 +13,9 @@ jobs:
         name: Print ACR_SERVER
         run: echo $ACR_SERVER
       -
+        name: Export ACR_SERVER
+        run: echo "ACR_SERVER=$ACR_SERVER" >> $GITHUB_ENV
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -
@@ -23,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: $ACR_SERVER/fitnessapp:latest
+          tags: ${{ env.ACR_SERVER }}/fitnessapp:latest
