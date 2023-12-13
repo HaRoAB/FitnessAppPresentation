@@ -14,9 +14,12 @@ jobs:
         run: |
           echo "ACR_SERVER=$ACR_SERVER" >> $GITHUB_ENV
           echo "ACR_SERVER=$ACR_NAME" >> $GITHUB_ENV
+      - 
+        name: az login
+        run: az login --identity
       # - 
       #   name: Azure login
-      #   uses: azure/login@v1
+      #   uses: azure/login@v2
       #   with:
       #     auth-type: IDENTITY          
       #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -24,7 +27,7 @@ jobs:
       #     enable-AzPSSession: true
       - 
         name: Login to ACR
-        run: az acr login --name $ACR_NAME --identity
+        run: az acr login --name $ACR_NAME
       - 
         name: Print ACR_SERVER
         run: echo $ACR_SERVER
