@@ -23,4 +23,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ ACR_SERVER }}/fitnessapp:latest
+          tags: $ACR_SERVER/fitnessapp:latest
