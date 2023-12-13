@@ -9,15 +9,23 @@ jobs:
   docker:
     runs-on: self-hosted
     steps:
-      - 
-        name: Azure Login
-        run: az login --identity
-      - 
-        name: Print ACR_SERVER
-        run: echo $ACR_SERVER
       -
         name: Export ACR_SERVER
         run: echo "ACR_SERVER=$ACR_SERVER" >> $GITHUB_ENV
+      - 
+        name: Azure login
+        uses: azure/login@v1
+        with:
+          auth-type: IDENTITY          
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+      - 
+        name: Login to ACR
+        run: az acr login $ACR_SERVER
+      - 
+        name: Print ACR_SERVER
+        run: echo $ACR_SERVER
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
