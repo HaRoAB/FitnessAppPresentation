@@ -13,7 +13,7 @@ jobs:
         name: Export ACR_SERVER
         run: |
           echo "ACR_SERVER=$ACR_SERVER" >> $GITHUB_ENV
-          echo "ACR_SERVER=$ACR_NAME" >> $GITHUB_ENV
+          echo "ACR_NAME=$ACR_NAME" >> $GITHUB_ENV
       - 
         name: az login
         run: az login --identity
