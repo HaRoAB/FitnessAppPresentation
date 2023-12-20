@@ -24,7 +24,15 @@ public class WorkoutApiService : IService
     {
         try
         {
-            var response = await _httpClient.GetAsync($"{url}/workout");
+            if (string.IsNullOrEmpty(url))
+            {
+                Console.WriteLine("URL is null or empty. Cannot make the request.");
+                Console.WriteLine("url : " + url);
+                return new List<WorkoutDTO>();
+            }
+
+            var response = await _httpClient.GetAsync($"{url}/workout").ConfigureAwait(false);
+            Console.WriteLine("url : " + url);
 
             if (response.IsSuccessStatusCode)
             {
@@ -51,32 +59,53 @@ public class WorkoutApiService : IService
             // Handle the exception accordingly
         }
 
+
         return new List<WorkoutDTO>(); // Return an empty list or handle the failure case accordingly
     }
-
+    public async Task Update(WorkoutViewModel workoutViewModel)
+    {
+        throw new NotImplementedException();
+    }
 
     public async Task<WorkoutDTO> Get(string id)
     {
         throw new NotImplementedException();
     }
-
     public async Task Create(WorkoutViewModel workoutViewModel)
     {
         try
         {
+            if (string.IsNullOrEmpty(url))
+            {
+                Console.WriteLine("URL is null or empty. Cannot make the request.");
+                Console.WriteLine($"Logging time: {DateTime.Now}");
+                Console.WriteLine("url : " + url);
+                return;
+            }
+
             var workoutJson = JsonSerializer.Serialize(workoutViewModel);
             HttpResponseMessage response = await _httpClient.PostAsJsonAsync(url, workoutJson);
-            response.EnsureSuccessStatusCode();
 
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Item created successfully.");
+            }
+            else
+            {
+                Console.WriteLine($"Received an error response from the API. Status Code: {response.StatusCode}");
+                Console.WriteLine($"Logging time: {DateTime.Now}");
+
+                // Optionally, you can log the response content for further analysis
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Error response content: {errorContent}");
+            }
         }
-        catch
+        catch (Exception ex)
         {
-            Console.WriteLine("Could not create item");
+            Console.WriteLine($"Error: {ex.Message}");
+            Console.WriteLine($"Logging time: {DateTime.Now}");
+            // Handle the exception accordingly
         }
     }
 
-    public async Task Update(WorkoutViewModel workoutViewModel)
-    {
-        throw new NotImplementedException();
-    }
 }

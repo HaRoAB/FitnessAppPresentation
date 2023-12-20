@@ -26,6 +26,7 @@ public class WorkoutController : Controller
     }
 
     [HttpPost]
+    //[ValidateAntiForgeryToken]
     public IActionResult Planner(WorkoutViewModel workoutViewModel)
     {
         _workoutApiService.Create(workoutViewModel);
