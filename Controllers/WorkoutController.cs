@@ -6,6 +6,7 @@ using System.Text.Json;
 
 namespace FitnessAppPresentation.Controllers;
 
+[AutoValidateAntiforgeryToken]
 public class WorkoutController : Controller
 {
     private readonly WorkoutApiService _workoutApiService;

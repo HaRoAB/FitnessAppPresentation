@@ -6,9 +6,9 @@ env:
   RESOURCE_GROUP: "regularearwig-rg"
   CLUSTER_NAME: "regularearwig-aks"
   PROJECT_NAME: "fitnessapp"
+  PASSWORD: "8s15gPZ5F6OJkyVtELaANG9nktIUb3iRuM+jAcMGUY+ACRDmGH3h"
   TAG: "latest"
   K8S_DEPLOYMENT_NAME: "fitnessapp-deployment"
-
 on: [push]
 
 jobs:
@@ -40,7 +40,6 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker login ${{ env.REGISTRY_URL }} -u ${{ env.REGISTRY_NAME }} -p ${{ env.PASSWORD }}
 
         docker build -t ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }} .
         docker push ${{ env.REGISTRY_URL }}/${{ env.PROJECT_NAME }}:${{ env.TAG }}

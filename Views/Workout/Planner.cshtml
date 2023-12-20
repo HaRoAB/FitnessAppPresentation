@@ -30,11 +30,12 @@
             }
         </table>
     }
-
 <div>
 
 @using (Html.BeginForm("Planner", "Workout", FormMethod.Post))
 {
+     @Html.AntiForgeryToken()
+     
     <div class="form-group custom-form">
        <table>
             <thead>
@@ -45,18 +46,22 @@
                 <td><button type="button" onclick="addExercise()">Add Exercise</button></td>
                 <table id="exercise-form">
                     <thead>
-                        <th>@Html.LabelFor(model => model.Exercise.Name)</th>
-                        <th>@Html.LabelFor(model => model.Exercise.Reps)</th>
-                        <th>@Html.LabelFor(model => model.Exercise.Sets)</th>
-                        <th>@Html.LabelFor(model => model.Exercise.Weight)</th>
-                        <th>@Html.LabelFor(model => model.Exercise.Rest)</th>
+                        <tr>
+                            <th>@Html.LabelFor(model => model.Exercise.Name)</th>
+                            <th>@Html.LabelFor(model => model.Exercise.Reps)</th>
+                            <th>@Html.LabelFor(model => model.Exercise.Sets)</th>
+                            <th>@Html.LabelFor(model => model.Exercise.Weight)</th>
+                            <th>@Html.LabelFor(model => model.Exercise.Rest)</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <td>@Html.EditorFor(model => model.Exercise.Name)</td>
-                        <td>@Html.EditorFor(model => model.Exercise.Reps)</td>
-                        <td>@Html.EditorFor(model => model.Exercise.Sets)</td>
-                        <td>@Html.EditorFor(model => model.Exercise.Weight)</td>
-                        <td>@Html.EditorFor(model => model.Exercise.Rest)</td>
+                        <tr>
+                            <td>@Html.EditorFor(model => model.Exercise.Name)</td>
+                            <td>@Html.EditorFor(model => model.Exercise.Reps)</td>
+                            <td>@Html.EditorFor(model => model.Exercise.Sets)</td>
+                            <td>@Html.EditorFor(model => model.Exercise.Weight)</td>
+                            <td>@Html.EditorFor(model => model.Exercise.Rest)</td>
+                        </tr>
                     </tbody>
                 </table>
             </tbody>
